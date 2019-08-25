@@ -1,0 +1,49 @@
+#-------------------------------------------------------------------------------------------------------------
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License. See https://go.microsoft.com/fwlink/?linkid=2090316 for license information.
+#-------------------------------------------------------------------------------------------------------------
+version: '3'
+services:  
+  framework-flyway:
+    container_name: framework-flyway
+    image: flyway/flyway:6.0.0           
+        
+    environment:
+      - FLYWAY_USER=${DATABASE_USERNAME}
+      - FLYWAY_PASSWORD=${DATABASE_PASSWORD}
+      - FLYWAY_CONNECT_RETRIES=20
+      - FLYWAY_LOCATIONS=filesystem:/workspace/sql
+      - FLYWAY_URL=jdbc:sqlserver://sql-server:1433;databasename=${DATABASE_NAME}
+
+    volumes:
+    # Update this to wherever you want VS Code to mount the folder of your project
+      - ..:/workspace
+
+    depends_on:
+      - sql-server
+
+    command:
+      - "migrate"
+      
+  sql-server:    
+    build:      
+      context: .
+      dockerfile: Dockerfile
+    
+    container_name: sql-server
+        
+    environment:
+      - SA_PASSWORD=${DATABASE_PASSWORD}
+      - SA_USER=${DATABASE_USERNAME}
+      - DATABASE_NAME=${DATABASE_NAME}
+      - ACCEPT_EULA="Y"      
+
+    ports:
+      - "1433:1433"
+
+    volumes:
+      # Update this to wherever you want VS Code to mount the folder of your project
+      - ..:/workspace
+
+      # This lets you avoid setting up Git again in the container
+      - ~/.gitconfig:/root/.gitconfig

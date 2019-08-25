@@ -1,0 +1,30 @@
+// See https://aka.ms/vscode-remote/devcontainer.json for format details.
+{
+	// See https://aka.ms/vscode-remote/devcontainer.json for format details.
+	"name": "Database Migrations using FlyWay",
+
+	// Update the 'dockerComposeFile' list if you have more compose files or use different names.
+	// The .devcontainer/docker-compose.yml file contains any overrides you need/want to make.
+	"dockerComposeFile": [
+		// "../docker-compose.yml",
+		"docker-compose.yml"
+	],
+
+	// The 'service' property is the name of the service for the container that VS Code should
+	// use. Update this value and .devcontainer/docker-compose.yml to the real service name.
+	"service": "sql-server",
+
+	// The optional 'workspaceFolder' property is the path VS Code should open by default when
+	// connected. This is typically a file mount in .devcontainer/docker-compose.yml
+	"workspaceFolder": "/workspace",
+
+	// Run the entrypoint.sh script to create the database so that 
+	// migrations can be run. FlyWay require a database to be created
+	// in order to migrate. 
+	"postCreateCommand": "/workspace/.devcontainer/entrypoint.sh",
+
+	// Add the IDs of any extensions you want installed in the array below.
+	"extensions": [
+		"ms-mssql.mssql"
+	]
+}

@@ -1,0 +1,2 @@
+echo "Creating database $DATABASE_NAME .."
+/opt/mssql-tools/bin/sqlcmd -S localhost -U $SA_USER -P $SA_PASSWORD -d master -Q "If(db_id(N'$DATABASE_NAME') IS NULL) BEGIN CREATE DATABASE [$DATABASE_NAME] END;"
