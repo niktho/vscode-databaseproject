@@ -15,3 +15,5 @@ However, this template are still under development so use it "**as is**". Feel f
 **Please** read the article [Developing inside a Container](https://code.visualstudio.com/docs/remote/containers) if this is your first time working with VS Code remote development. This will give you an introduction to the concepts and how to get started. 
 
 ## Getting Started
+
+This section will be updated. In the meantime have a look at the blog post [Database migrations using FlyWay](https://nikolaithomassen.com/2019/08/10/database-migrations-using-flyway/)
