@@ -11,7 +11,7 @@ resources:
         SA_USER: 'SA'
         SA_PASSWORD: 'Test2019.!'
         ACCEPT_EULA: 'Y'
-      command: 'sleep infinity'
+      command: "/bin/bash ls -a"
 
 pool:
   vmImage: 'ubuntu-latest'
