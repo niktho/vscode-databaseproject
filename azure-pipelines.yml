@@ -19,6 +19,7 @@ resources:
         FLYWAY_PASSWORD : 'Test2019.!'
         FLYWAY_CONNECT_RETRIES : '30'
         FLYWAY_URL: 'jdbc:sqlserver://testdb:1433;databasename=master'
+      command: "info"
 
 pool:
   vmImage: 'ubuntu-latest'
