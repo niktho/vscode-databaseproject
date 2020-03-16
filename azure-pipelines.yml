@@ -3,6 +3,8 @@ trigger:
 
 resources:
   containers:
+    - container: test_container
+      image: ubuntu-latest
     - container: mssql
       image: mcr.microsoft.com/mssql/server:2019-latest
       ports: 
@@ -11,17 +13,18 @@ resources:
         SA_USER: 'SA'
         SA_PASSWORD: 'Test2019.!'
         ACCEPT_EULA: 'Y'
+      command: 'sleep infinity'
 
 pool:
   vmImage: 'ubuntu-latest'
 
-container: mssql
+container: test_container
 
 services:
   mssql: mssql
 
 steps:
  - script: |
-    sleep 10s
-    /opt/mssql-tools/bin/sqlcmd -S localhost -U $SA_USER -P $SA_PASSWORD -d master -Q "If(db_id(N'$DATABASE_NAME') IS NULL) BEGIN CREATE DATABASE [$DATABASE_NAME] END;"
+    sleep 15s
+
 
