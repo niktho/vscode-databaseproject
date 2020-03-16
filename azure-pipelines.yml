@@ -35,5 +35,5 @@ services:
 steps:
  - script: |
     ls -a     
-    # sqlcmd -S testdb -U SA -P Test2019.!
+    sqlcmd -S testdb -U SA -P Test2019.!
 
