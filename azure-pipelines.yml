@@ -32,8 +32,7 @@ services:
   testdb: testdb
   flyway : flyway
 steps:
- - script: |
-    sleep 20s    
+ - script: |    
     apt-get install curl
     curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -	
     curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | tee /etc/apt/sources.list.d/msprod.list	
