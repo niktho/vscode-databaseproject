@@ -5,7 +5,10 @@ resources:
   containers:
     - container: my_container
       image: ubuntu:16.04
-      command: "apt-get install -y curl"
+      command: >
+        sh -c "
+          apt-get install -y curl
+        "
     - container: testdb
       image: mcr.microsoft.com/mssql/server:2019-latest
       ports: 
