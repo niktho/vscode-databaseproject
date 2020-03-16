@@ -1,8 +1,22 @@
 trigger:
 - master
 
+resources:
+  containers:
+    - container: mssql
+      image: mcr.microsoft.com/mssql/server:2019-latest
+      ports: 
+      - 1433:1433
+      env:
+        SA_USER: SA
+        SA_PASSWORD: Test2019.!
+        ACCEPT_EULA: Y
+
 pool:
   vmImage: 'ubuntu-latest'
+
+services:
+  mssql: mssql
 
 steps:
 - script: echo Hello, world!
