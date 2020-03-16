@@ -3,8 +3,6 @@ trigger:
 
 resources:
   containers:
-    - container: test_container
-      image: ubuntu-latest
     - container: mssql
       image: mcr.microsoft.com/mssql/server:2019-latest
       ports: 
@@ -17,8 +15,6 @@ resources:
 
 pool:
   vmImage: 'ubuntu-latest'
-
-container: test_container
 
 services:
   mssql: mssql
