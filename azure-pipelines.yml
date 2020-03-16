@@ -8,27 +8,20 @@ resources:
       ports: 
       - 1433:1433
       env:
-        SA_USER: SA
-        SA_PASSWORD: Test2019.!
-        ACCEPT_EULA: Y
+        SA_USER: 'SA'
+        SA_PASSWORD: 'Test2019.!'
+        ACCEPT_EULA: 'Y'
 
 pool:
   vmImage: 'ubuntu-latest'
+
+container: mssql
 
 services:
   mssql: mssql
 
 steps:
-- task: Bash@3
-  inputs:
-    targetType: 'inline'
-    script: 'sleep 30s'
-- task: SqlDacpacDeploymentOnMachineGroup@0
-  inputs:
-    TaskType: 'sqlInline'
-    InlineSql: 'SELECT 1'
-    ServerName: 'localhost,1433'
-    DatabaseName: 'master'
-    AuthScheme: 'sqlServerAuthentication'
-    SqlUsername: 'SA'
-    SqlPassword: 'Test2019.!'
+ - script: |
+    sleep 10s
+    /opt/mssql-tools/bin/sqlcmd -S localhost -U $SA_USER -P $SA_PASSWORD -d master -Q "If(db_id(N'$DATABASE_NAME') IS NULL) BEGIN CREATE DATABASE [$DATABASE_NAME] END;"
+
