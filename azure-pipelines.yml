@@ -33,5 +33,5 @@ container: my_container
 #   flyway : flyway
 steps:
  - script: |
-    apt install -y curl
+    sudo apt-get install curl
 
