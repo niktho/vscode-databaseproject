@@ -34,8 +34,8 @@ services:
 steps:
  - script: |
     sleep 20s    
-    url https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -	    sqlcmd -S localhost,1433 -U SA -P "Test2019.!" -j
-    curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | sudo tee /etc/apt/sources.list.d/msprod.list	
+    url https://packages.microsoft.com/keys/microsoft.asc | apt-key add -	
+    curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | tee /etc/apt/sources.list.d/msprod.list	
     apt-get update 	
     apt-get install mssql-tools unixodbc-dev	
     echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bash_profile
