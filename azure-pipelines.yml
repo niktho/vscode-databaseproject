@@ -33,5 +33,5 @@ services:
   flyway : flyway
 steps:
  - script: |
-    sqlcmd -S testdb -U SA -P 'Test2019.!'
+    sqlcmd -S testdb -U SA -P Test2019.!
 
