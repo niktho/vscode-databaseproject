@@ -11,7 +11,7 @@ resources:
         SA_USER: 'SA'
         SA_PASSWORD: 'Test2019.!'
         ACCEPT_EULA: 'Y'
-      command: "/bin/bash ls -a"
+      command: "/bin/bash /opt/mssql/bin/sqlservr"
 
 pool:
   vmImage: 'ubuntu-latest'
