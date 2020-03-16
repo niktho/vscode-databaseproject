@@ -12,12 +12,20 @@ resources:
         SA_PASSWORD: 'Test2019.!'
         ACCEPT_EULA: 'Y'
       command: "/bin/bash /opt/mssql/bin/sqlservr"
+    - container: flyway
+      image: flyway/flyway:6.3.0
+      env:
+        FLYWAY_USER : 'SA'
+        FLYWAY_PASSWORD : 'Test2019.!'
+        FLYWAY_CONNECT_RETRIES : '30'
+        FLYWAY_URL: 'jdbc:sqlserver://sql-server:1433;databasename=master'
 
 pool:
   vmImage: 'ubuntu-latest'
 
 services:
   mssql: mssql
+  flyway : flyway
 steps:
  - script: |
     sleep 20s    
