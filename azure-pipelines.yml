@@ -5,6 +5,7 @@ resources:
   containers:
     - container: my_container
       image: ubuntu:16.04
+      command: "apt-get install -y curl"
     - container: testdb
       image: mcr.microsoft.com/mssql/server:2019-latest
       ports: 
@@ -32,8 +33,7 @@ services:
   testdb: testdb
   flyway : flyway
 steps:
- - script: |    
-    apt-get install -y curl
+ - script: |        
     curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -	
     curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | tee /etc/apt/sources.list.d/msprod.list	
     apt-get update 	
