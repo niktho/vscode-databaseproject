@@ -19,10 +19,16 @@ services:
   mssql: mssql
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: 'sleep 30s'
+- task: SqlDacpacDeploymentOnMachineGroup@0
+  inputs:
+    TaskType: 'sqlInline'
+    InlineSql: 'SELECT 1'
+    ServerName: 'localhost,1433'
+    DatabaseName: 'master'
+    AuthScheme: 'sqlServerAuthentication'
+    SqlUsername: 'SA'
+    SqlPassword: 'Test2019.!'
