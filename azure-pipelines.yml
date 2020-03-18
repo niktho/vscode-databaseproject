@@ -33,6 +33,8 @@ services:
 
 steps:
  - script: |    
+    docker ps
     sleep 15s
-    /opt/mssql-tools/bin/sqlcmd -S testdb,1433 -U $SA_USER -P $SA_PASSWORD -d cidb -Q "SELECT 1"
+    sqlcmd -S 127.0.0.1 -U SA -P "Test2019.!" -d cidb -Q "SELECT 1"
+    # /opt/mssql-tools/bin/sqlcmd -S testdb,1433 -U $SA_USER -P $SA_PASSWORD -d cidb -Q "SELECT 1"
 
