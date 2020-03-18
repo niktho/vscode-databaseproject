@@ -33,6 +33,6 @@ services:
   # flyway : flyway
 steps:
  - script: |
-    cd /
+    cd /opt/
     ls -a
 
