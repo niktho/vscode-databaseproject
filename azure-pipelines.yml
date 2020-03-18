@@ -9,9 +9,7 @@ resources:
       image: mcr.microsoft.com/mssql/server:2019-latest    
       ports: 
       - 1433:1433
-      env:        
-        MSSQL_SA_PASSWORD: "Test2019IBermuda"
-        ACCEPT_EULA: "Y"        
+      options: '-e "ACCEPT_EULA=Y" -e "SA_PASSWORD=<YourStrong@Passw0rd>" '       
       # command: "/bin/bash /opt/mssql/bin/sqlservr"
     # - container: flyway
     #   image: flyway/flyway:6.3.0
@@ -34,5 +32,5 @@ services:
 steps:
  - script: |
     echo $TEST
-    /opt/mssql-tools/bin/sqlcmd -S testdb -U SA -P Test2019IBermuda
+    /opt/mssql-tools/bin/sqlcmd -S testdb -U SA -P "<YourStrong@Passw0rd>"
 
