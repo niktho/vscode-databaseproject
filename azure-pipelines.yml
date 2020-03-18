@@ -35,5 +35,7 @@ services:
 steps:
  - script: |
     cd /opt/mssql-tools/bin/sqlcmd/
+    ls -a
+
     /opt/mssql-tools/bin/sqlcmd -S testdb -U SA -P Test2019.!
 
