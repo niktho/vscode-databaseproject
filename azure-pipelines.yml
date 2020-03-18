@@ -4,7 +4,7 @@ trigger:
 resources:
   containers:
     - container: my_container
-      image: mcr.microsoft.com/mssql/server:2019-latest
+      image: ubuntu-16.04
       options: --user root
     - container: testdb
       image: mcr.microsoft.com/mssql/server:2019-latest
@@ -25,7 +25,7 @@ resources:
       command: "info"
 
 pool:
-  vmImage: 'ubuntu-16.04'
+  vmImage: 'ubuntu-latest'
 
 container: my_container
 
@@ -34,6 +34,6 @@ services:
   flyway : flyway
 steps:
  - script: |
-    ls -a     
+    apt install sudo
     sqlcmd -S testdb -U SA -P Test2019.!
 
