@@ -5,15 +5,15 @@ resources:
   containers:          
     - container: sqltools
       image : mcr.microsoft.com/mssql-tools
-    # - container: testdb
-    #   image: mcr.microsoft.com/mssql/server:2019-latest
-    #   ports: 
-    #   - 1433:1433
-    #   env:
-    #     SA_USER: 'SA'
-    #     SA_PASSWORD: 'Test2019.!'
-    #     ACCEPT_EULA: 'Y'
-    #   command: "/bin/bash /opt/mssql/bin/sqlservr"
+    - container: testdb
+      image: mcr.microsoft.com/mssql/server:2019-latest
+      ports: 
+      - 1433:1433
+      env:
+        SA_USER: 'SA'
+        SA_PASSWORD: 'Test2019.!'
+        ACCEPT_EULA: 'Y'
+      command: "/bin/bash /opt/mssql/bin/sqlservr"
     # - container: flyway
     #   image: flyway/flyway:6.3.0
     #   env:
@@ -28,11 +28,12 @@ pool:
 
 container: sqltools
 
-# services:  
-#     testdb : testdb
+services:
+  testdb : testdb
   # flyway : flyway
+
 steps:
  - script: |
     cd /opt/mssql-tools/bin/
-    ls -a
+    sqlcmd -S testdb -U SA -P Test2019.!
 
