@@ -14,7 +14,7 @@ resources:
         SA_PASSWORD: 'Test2019.!'
         ACCEPT_EULA: 'Y'
       command: "/bin/bash /opt/mssql/bin/sqlservr"
-    - container: flyway
+    # - container: flyway
     #   image: flyway/flyway:6.3.0
     #   env:
     #     FLYWAY_USER : 'SA'
