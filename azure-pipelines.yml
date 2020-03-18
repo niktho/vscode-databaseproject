@@ -33,6 +33,6 @@ container: sqltools
   # flyway : flyway
 steps:
  - script: |
-    cd /opt/
+    cd /opt/mssql-tools/
     ls -a
 
