@@ -2,9 +2,7 @@ trigger:
 - master
 
 resources:
-  containers:
-    - container: my_container
-      image: ubuntu:latest           
+  containers:          
     - container: testdb
       image: mcr.microsoft.com/mssql/server:2019-latest
       ports: 
@@ -26,10 +24,9 @@ resources:
 pool:
   vmImage: 'ubuntu-18.04'
 
-container: my_container
+container: testdb
 
-services:
-  testdb: testdb
+# services:  
   # flyway : flyway
 steps:
  - script: |
