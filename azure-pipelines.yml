@@ -4,8 +4,9 @@ trigger:
 resources:
   containers:          
     - container: sqltools
-      image : mcr.microsoft.com/mssql-tools          
-    - container: testdb    
+      image : mcr.microsoft.com/mssql-tools
+      options: -e "TEST=Burpoe"
+    - container: testdb
       image: mcr.microsoft.com/mssql/server:2019-latest    
       options: -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=<YourStrong@Passw0rd>"
       ports: 
@@ -32,5 +33,5 @@ services:
 steps:
  - script: |
     echo $TEST
-    /opt/mssql-tools/bin/sqlcmd -S testdb -U SA -P "<YourStrong@Passw0rd>"
+    /opt/mssql-tools/bin/sqlcmd -S testdb -U SA -P "<YourStrong@Passw0rd>" -Q "SELECT 1"
 
