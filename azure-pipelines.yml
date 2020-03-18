@@ -30,6 +30,6 @@ container: testdb
   # flyway : flyway
 steps:
  - script: |
-    cd /usr/sbin
-    ping testdb
+    cd /opt/mssql-tools/bin/sqlcmd
+    ls -a
 
