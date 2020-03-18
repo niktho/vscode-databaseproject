@@ -3,6 +3,8 @@ trigger:
 
 resources:
   containers:          
+    - container: sqltools
+      image : mcr.microsoft.com/mssql-tools
     - container: testdb
       image: mcr.microsoft.com/mssql/server:2019-latest
       ports: 
@@ -24,9 +26,10 @@ resources:
 pool:
   vmImage: 'ubuntu-18.04'
 
-container: testdb
+container: sqltools
 
-# services:  
+services:  
+    testdb : testdb
   # flyway : flyway
 steps:
  - script: |
