@@ -33,5 +33,6 @@ services:
   # flyway : flyway
 steps:
  - script: |
+    cd /usr/sbin
     ping testdb
 
