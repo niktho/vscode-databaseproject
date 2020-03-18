@@ -10,13 +10,14 @@ resources:
         SA_PASSWORD: "Test2019.!"
       ports: 
       - 1433:1433
-    - container: flyway
-      image: flyway/flyway:6.3.0
-      env:
-        FLYWAY_USER : "SA"
-        FLYWAY_PASSWORD : "Test2019.!"
-        FLYWAY_CONNECT_RETRIES : "30"
-        FLYWAY_URL: 'jdbc:sqlserver://testdb:1433;databasename=cidb'
+    # - container: flyway
+    #   image: flyway/flyway:6.3.0
+    #   env:
+    #     FLYWAY_USER : "SA"
+    #     FLYWAY_PASSWORD : "Test2019.!"
+    #     FLYWAY_CONNECT_RETRIES : "60"
+    #     FLYWAY_URL: 'jdbc:sqlserver://testdb:1433;databasename=cidb'
+    #   command: migrate
 
 pool:
   vmImage: 'ubuntu-18.04'
@@ -30,7 +31,7 @@ services:
 steps:
  - script: |        
     sleep 15s
-    sqlcmd -S 127.0.0.1 -U SA -P "Test2019.!"  -Q "CREATE DATABASE [cidb]"
+    sqlcmd -S 127.0.0.1 -U SA -P "Test2019.!" -d master -Q "CREATE DATABASE [cidb]"
     # /opt/mssql-tools/bin/sqlcmd -S testdb,1433 -U $SA_USER -P $SA_PASSWORD -d cidb -Q "SELECT 1"
     
     docker run --rm flyway/flyway:6.3.0 -url='jdbc:sqlserver://127.0.0.1:1433;databasename=cidb' -user=SA -password=Test2019.! info
