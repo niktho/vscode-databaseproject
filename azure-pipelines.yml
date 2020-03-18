@@ -4,8 +4,10 @@ trigger:
 resources:
   containers:
     - container: my_container
-      image: ubuntu:latest
-      options: --user root
+      build:      
+      context: .
+      dockerfile: ./.devcontainer/Dockerfile
+      
     - container: testdb
       image: mcr.microsoft.com/mssql/server:2019-latest
       ports: 
@@ -34,6 +36,5 @@ services:
   flyway : flyway
 steps:
  - script: |
-    apt install sudo
     sqlcmd -S testdb -U SA -P Test2019.!
 
