@@ -33,5 +33,5 @@ steps:
     sqlcmd -S 127.0.0.1 -U SA -P "Test2019.!"  -Q "CREATE DATABASE [cidb]"
     # /opt/mssql-tools/bin/sqlcmd -S testdb,1433 -U $SA_USER -P $SA_PASSWORD -d cidb -Q "SELECT 1"
     
-    docker run --rm flyway/flyway:6.3.0 -url 'jdbc:sqlserver://testdb:1433;databasename=cidb' -user=SA -password=Test2019.! info
+    docker run --rm flyway/flyway:6.3.0 -url='jdbc:sqlserver://127.0.0.1:1433;databasename=cidb' -user=SA -password=Test2019.! info
 
