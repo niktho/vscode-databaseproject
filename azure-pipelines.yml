@@ -10,7 +10,7 @@ resources:
       ports: 
       - 1433:1433
       env:        
-        SA_PASSWORD: "Test2019IBermuda"
+        MSSQL_SA_PASSWORD: "Test2019IBermuda"
         ACCEPT_EULA: "Y"        
       # command: "/bin/bash /opt/mssql/bin/sqlservr"
     # - container: flyway
