@@ -4,16 +4,14 @@ trigger:
 resources:
   containers:          
     - container: sqltools
-      image : mcr.microsoft.com/mssql-tools
-      env:
-        TEST: 'Burpee'
-    - container: testdb
-      image: mcr.microsoft.com/mssql/server:2019-latest
+      image : mcr.microsoft.com/mssql-tools          
+    - container: testdb    
+      image: mcr.microsoft.com/mssql/server:2019-latest    
       ports: 
       - 1433:1433
       env:        
-        SA_PASSWORD: "Test2019.!"
-        ACCEPT_EULA: "Y"
+        SA_PASSWORD: "Test2019IBermuda"
+        ACCEPT_EULA: "Y"        
       # command: "/bin/bash /opt/mssql/bin/sqlservr"
     # - container: flyway
     #   image: flyway/flyway:6.3.0
@@ -36,5 +34,5 @@ services:
 steps:
  - script: |
     echo $TEST
-    /opt/mssql-tools/bin/sqlcmd -S testdb -U SA -P 'Test2019.!'
+    /opt/mssql-tools/bin/sqlcmd -S testdb -U SA -P Test2019IBermuda
 
