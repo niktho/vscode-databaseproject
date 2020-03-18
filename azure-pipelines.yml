@@ -5,7 +5,7 @@ resources:
   containers:
     - container: my_container
       image: ubuntu:latest     
-      command: 'apt install sudo' 
+      command: 'apt install -y curl' 
     # - container: testdb
     #   image: mcr.microsoft.com/mssql/server:2019-latest
     #   ports: 
@@ -34,5 +34,6 @@ container: my_container
 #   flyway : flyway
 steps:
  - script: |
+    curl
     echo 'Hello World'
 
