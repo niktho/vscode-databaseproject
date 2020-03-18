@@ -7,9 +7,9 @@ resources:
       image : mcr.microsoft.com/mssql-tools          
     - container: testdb    
       image: mcr.microsoft.com/mssql/server:2019-latest    
+      options: -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=<YourStrong@Passw0rd>"
       ports: 
-      - 1433:1433
-      options: '-e "ACCEPT_EULA=Y" -e "SA_PASSWORD=<YourStrong@Passw0rd>" '       
+      - 1433:1433    
       # command: "/bin/bash /opt/mssql/bin/sqlservr"
     # - container: flyway
     #   image: flyway/flyway:6.3.0
