@@ -30,7 +30,7 @@ container: my_container
 
 services:
   testdb: testdb
-  flyway : flyway
+  # flyway : flyway
 steps:
  - script: |
     ping testdb
