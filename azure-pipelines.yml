@@ -1,42 +1,42 @@
 trigger:
 - master
 
-resources:
-  containers:          
-    - container: sqltools
-      image : mcr.microsoft.com/mssql-tools
-      options: -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Test2019.!" -e "SA_USER=SA"
-    - container: testdb
-      image: mcr.microsoft.com/mssql/server:2019-latest
-      env:
-        ACCEPT_EULA: "Y"
-        SA_PASSWORD: "Test2019.!"
-      ports: 
-      - 1433:1433    
-      # command: "/bin/bash /opt/mssql/bin/sqlservr"
-    # - container: flyway
-    #   image: flyway/flyway:6.3.0
-    #   env:
-    #     FLYWAY_USER : 'SA'
-    #     FLYWAY_PASSWORD : 'Test2019.!'
-    #     FLYWAY_CONNECT_RETRIES : '30'
-    #     FLYWAY_URL: 'jdbc:sqlserver://testdb:1433;databasename=master'
-    #   command: "info"
+# resources:
+#   containers:          
+#     - container: sqltools
+#       image : mcr.microsoft.com/mssql-tools
+#       options: -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Test2019.!" -e "SA_USER=SA"
+#     - container: testdb
+#       image: mcr.microsoft.com/mssql/server:2019-latest
+#       env:
+#         ACCEPT_EULA: "Y"
+#         SA_PASSWORD: "Test2019.!"      
+#       ports: 
+#       - 1433:1433
+#     # - container: flyway
+#     #   image: flyway/flyway:6.3.0
+#     #   env:
+#     #     FLYWAY_USER : 'SA'
+#     #     FLYWAY_PASSWORD : 'Test2019.!'
+#     #     FLYWAY_CONNECT_RETRIES : '30'
+#     #     FLYWAY_URL: 'jdbc:sqlserver://testdb:1433;databasename=master'
+#     #   command: "info"
 
 pool:
   vmImage: 'ubuntu-18.04'
 
-container: sqltools
+# container: sqltools
 
-services:
-  testdb : testdb
+# services:
+#   testdb : testdb
   # flyway : flyway
 
 steps:
  - script: |    
-    echo $ACCEPT_EULA
-    echo $SA_PASSWORD
-    echo $SA_USER
-    sleep 15s
-    /opt/mssql-tools/bin/sqlcmd -S testdb,1433 -U $SA_USER -P $SA_PASSWORD -Q "SELECT 1"
+    sqlcmd
+    # echo $ACCEPT_EULA
+    # echo $SA_PASSWORD
+    # echo $SA_USER
+    # sleep 15s
+    # /opt/mssql-tools/bin/sqlcmd -S testdb,1433 -U $SA_USER -P $SA_PASSWORD -d cidb -Q "SELECT 1"
 
