@@ -5,6 +5,8 @@ resources:
   containers:          
     - container: sqltools
       image : mcr.microsoft.com/mssql-tools
+      env:
+        TEST: 'Burpee'
     - container: testdb
       image: mcr.microsoft.com/mssql/server:2019-latest
       ports: 
@@ -33,5 +35,6 @@ services:
 
 steps:
  - script: |
+    echo $TEST
     /opt/mssql-tools/bin/sqlcmd -S testdb -U SA -P 'Test2019.!'
 
