@@ -5,10 +5,10 @@ resources:
   containers:          
     - container: sqltools
       image : mcr.microsoft.com/mssql-tools
-      options: -e "TEST=Burpoe"
+      options: -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Test2019.!"
     - container: testdb
       image: mcr.microsoft.com/mssql/server:2019-latest    
-      options: -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=<YourStrong@Passw0rd>"
+      options: -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Test2019.!"
       ports: 
       - 1433:1433    
       # command: "/bin/bash /opt/mssql/bin/sqlservr"
@@ -32,6 +32,7 @@ services:
 
 steps:
  - script: |
-    echo $TEST
+    echo $ACCEPT_EULA
+    echo $SA_PASSWORD
     /opt/mssql-tools/bin/sqlcmd -S testdb -U SA -P "<YourStrong@Passw0rd>" -Q "SELECT 1"
 
