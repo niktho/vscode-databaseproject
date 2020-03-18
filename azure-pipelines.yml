@@ -1,18 +1,18 @@
 trigger:
 - master
 
-# resources:
-#   containers:          
+resources:
+  containers:          
 #     - container: sqltools
 #       image : mcr.microsoft.com/mssql-tools
 #       options: -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Test2019.!" -e "SA_USER=SA"
-#     - container: testdb
-#       image: mcr.microsoft.com/mssql/server:2019-latest
-#       env:
-#         ACCEPT_EULA: "Y"
-#         SA_PASSWORD: "Test2019.!"      
-#       ports: 
-#       - 1433:1433
+    - container: testdb
+      image: mcr.microsoft.com/mssql/server:2019-latest
+      env:
+        ACCEPT_EULA: "Y"
+        SA_PASSWORD: "Test2019.!"      
+      ports: 
+      - 1433:1433
 #     # - container: flyway
 #     #   image: flyway/flyway:6.3.0
 #     #   env:
@@ -27,16 +27,12 @@ pool:
 
 # container: sqltools
 
-# services:
-#   testdb : testdb
+services:
+  testdb : testdb
   # flyway : flyway
 
 steps:
  - script: |    
-    sqlcmd
-    # echo $ACCEPT_EULA
-    # echo $SA_PASSWORD
-    # echo $SA_USER
-    # sleep 15s
-    # /opt/mssql-tools/bin/sqlcmd -S testdb,1433 -U $SA_USER -P $SA_PASSWORD -d cidb -Q "SELECT 1"
+    sleep 15s
+    /opt/mssql-tools/bin/sqlcmd -S testdb,1433 -U $SA_USER -P $SA_PASSWORD -d cidb -Q "SELECT 1"
 
