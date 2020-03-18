@@ -4,18 +4,17 @@ trigger:
 resources:
   containers:
     - container: my_container
-      image: ubuntu:latest     
-      command: 'apt install -y curl' 
-    # - container: testdb
-    #   image: mcr.microsoft.com/mssql/server:2019-latest
-    #   ports: 
-    #   - 1433:1433
-    #   env:
-    #     SA_USER: 'SA'
-    #     SA_PASSWORD: 'Test2019.!'
-    #     ACCEPT_EULA: 'Y'
-    #   command: "/bin/bash /opt/mssql/bin/sqlservr"
-    # - container: flyway
+      image: ubuntu:latest           
+    - container: testdb
+      image: mcr.microsoft.com/mssql/server:2019-latest
+      ports: 
+      - 1433:1433
+      env:
+        SA_USER: 'SA'
+        SA_PASSWORD: 'Test2019.!'
+        ACCEPT_EULA: 'Y'
+      command: "/bin/bash /opt/mssql/bin/sqlservr"
+    - container: flyway
     #   image: flyway/flyway:6.3.0
     #   env:
     #     FLYWAY_USER : 'SA'
@@ -29,11 +28,10 @@ pool:
 
 container: my_container
 
-# services:
-#   testdb: testdb
-#   flyway : flyway
+services:
+  testdb: testdb
+  flyway : flyway
 steps:
  - script: |
-    curl
-    echo 'Hello World'
+    ping testdb
 
