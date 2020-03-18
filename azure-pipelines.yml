@@ -5,7 +5,7 @@ resources:
   containers:          
     - container: sqltools
       image : mcr.microsoft.com/mssql-tools
-      options: -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Test2019.!"
+      options: -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Test2019.!" -e "SA_USER=SA"
     - container: testdb
       image: mcr.microsoft.com/mssql/server:2019-CU3-ubuntu-16.04
       options: -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Test2019.!"
@@ -31,8 +31,10 @@ services:
   # flyway : flyway
 
 steps:
- - script: |
+ - script: |    
     echo $ACCEPT_EULA
     echo $SA_PASSWORD
-    /opt/mssql-tools/bin/sqlcmd -S testdb,1433 -U SA -P "<YourStrong@Passw0rd>" -Q "SELECT 1"
+    echo $SA_USER
+    sleep 15s
+    /opt/mssql-tools/bin/sqlcmd -S testdb,1433 -U $SA_USER -P $SA_PASSWORD -Q "SELECT 1"
 
