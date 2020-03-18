@@ -33,6 +33,6 @@ services:
   # flyway : flyway
 steps:
  - script: |
-    cd /opt/mssql-tools/bin/sqlcmd
+    cd ..
     ls -a
 
