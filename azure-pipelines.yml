@@ -33,5 +33,5 @@ services:
 
 steps:
  - script: |
-    /opt/mssql-tools/bin/sqlcmd -S testdb -U SA -P yourStrong(!)Password
+    /opt/mssql-tools/bin/sqlcmd -S testdb -U sa -P "yourStrong(!)Password"
 
