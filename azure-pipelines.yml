@@ -8,7 +8,10 @@ resources:
       options: -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Test2019.!" -e "SA_USER=SA"
     - container: testdb
       image: mcr.microsoft.com/mssql/server:2019-CU3-ubuntu-16.04
-      options: -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Test2019.!"
+      # options: -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Test2019.!"
+      env:
+        ACCEPT_EULA: "Y"
+        SA_PASSWORD: "Test2019.!"
       ports: 
       - 1433:1433    
       # command: "/bin/bash /opt/mssql/bin/sqlservr"
