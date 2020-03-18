@@ -10,7 +10,7 @@ resources:
       ports: 
       - 1433:1433
       env:        
-        SA_PASSWORD: "yourStrong(!)Password"
+        SA_PASSWORD: "Test2019.!"
         ACCEPT_EULA: "Y"
       # command: "/bin/bash /opt/mssql/bin/sqlservr"
     # - container: flyway
@@ -33,5 +33,5 @@ services:
 
 steps:
  - script: |
-    /opt/mssql-tools/bin/sqlcmd -S testdb -U sa -P "yourStrong(!)Password"
+    /opt/mssql-tools/bin/sqlcmd -S testdb -U sa -P 'Test2019.!'
 
