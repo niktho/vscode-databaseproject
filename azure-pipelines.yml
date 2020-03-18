@@ -4,7 +4,8 @@ trigger:
 resources:
   containers:
     - container: my_container
-      image: ubuntu:latest      
+      image: ubuntu:latest     
+      command: 'apt install sudo' 
     # - container: testdb
     #   image: mcr.microsoft.com/mssql/server:2019-latest
     #   ports: 
@@ -26,12 +27,12 @@ resources:
 pool:
   vmImage: 'ubuntu-18.04'
 
-# container: my_container
+container: my_container
 
 # services:
 #   testdb: testdb
 #   flyway : flyway
 steps:
  - script: |
-    docker exec -ti my_container sh -c "echo a && echo b"
+    echo 'Hello World'
 
